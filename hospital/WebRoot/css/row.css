@@ -1,0 +1,38 @@
+.row{
+			width: 80%;
+			border: 1px solid gray;
+			margin: 1 auto;
+			clear: both;
+			height: 40px;
+			line-height: 40px;
+}
+.col{
+			width: 19.78%;
+			height: 40px;
+			line-height: 40px;
+			float: left;
+			text-align: center;
+			border: 1px solid gray;
+}
+.col5{
+			height: 40px;
+			line-height: 40px;
+			text-align: center;
+			border: 2px solid gray;
+			clear: both;
+}
+.topRow{
+			margin: 0 auto;
+			height: 40px;
+			width: 80%;
+			text-align: center;
+}
+.topRow2{
+			width: 80%;
+			text-align:center;
+			border: 1px solid gray;
+			margin: 1 auto;
+			clear: both;
+			height: 40px;
+			line-height: 40px;
+}

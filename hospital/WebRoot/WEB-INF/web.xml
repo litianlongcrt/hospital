@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" id="WebApp_ID" version="3.0">
+  <display-name>hospital</display-name>
+  <welcome-file-list>
+    <welcome-file>index.html</welcome-file>
+    <welcome-file>index.htm</welcome-file>
+    <welcome-file>index.jsp</welcome-file>
+    <welcome-file>default.html</welcome-file>
+    <welcome-file>default.htm</welcome-file>
+    <welcome-file>default.jsp</welcome-file>
+  </welcome-file-list>
+  <servlet>
+    <servlet-name>LoginServlet</servlet-name>
+    <servlet-class>crt.servlet.LoginServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>LoginServlet</servlet-name>
+    <url-pattern>/Login</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>PatientServlet</servlet-name>
+    <servlet-class>crt.servlet.PatientServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>PatientServlet</servlet-name>
+    <url-pattern>/Patient</url-pattern>
+  </servlet-mapping>
+  
+  <!-- <servlet>
+    <servlet-name>HuShiServlet</servlet-name>
+    <servlet-class>crt.servlet.HuShiServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>HuShiServlet</servlet-name>
+    <url-pattern>/HuShiServlet</url-pattern>
+  </servlet-mapping>
+   -->
+   <servlet>
+    <servlet-name>AddPatientServlet</servlet-name>
+    <servlet-class>crt.servlet.AddPatientServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AddPatientServlet</servlet-name>
+    <url-pattern>/AddPatient</url-pattern>
+  </servlet-mapping>
+  
+   <servlet>
+    <servlet-name>EmptyBedServlet</servlet-name>
+    <servlet-class>crt.servlet.EmptyBedServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>EmptyBedServlet</servlet-name>
+    <url-pattern>/EmptyBedServlet</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>AddDrugServlet</servlet-name>
+    <servlet-class>crt.servlet.AddDrugServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AddDrugServlet</servlet-name>
+    <url-pattern>/AddDrug</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>DoctorAddPatientServlet</servlet-name>
+    <servlet-class>crt.servlet.DoctorAddPatientServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DoctorAddPatientServlet</servlet-name>
+    <url-pattern>/DoctorAddPatient</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>SureAddDrugServlet</servlet-name>
+    <servlet-class>crt.servlet.SureAddDrugServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>SureAddDrugServlet</servlet-name>
+    <url-pattern>/SureAddDrug</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>SelectMakeDrugByPnoAndDateServlet</servlet-name>
+    <servlet-class>crt.servlet.SelectMakeDrugByPnoAndDateServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>SelectMakeDrugByPnoAndDateServlet</servlet-name>
+    <url-pattern>/SelectMakeDrugByPnoAndDate</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>UpdatePatientDescServlet</servlet-name>
+    <servlet-class>crt.servlet.UpdatePatientDescServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>UpdatePatientDescServlet</servlet-name>
+    <url-pattern>/UpdatePatientDesc</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>HuShiAddPatientJSPServlet</servlet-name>
+    <servlet-class>crt.servlet.HuShiAddPatientJSPServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>HuShiAddPatientJSPServlet</servlet-name>
+    <url-pattern>/HuShiAddPatientJSP</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>PatientOutServlet</servlet-name>
+    <servlet-class>crt.servlet.PatientOutServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>PatientOutServlet</servlet-name>
+    <url-pattern>/PatientOut</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>TodayAllDrugServlet</servlet-name>
+    <servlet-class>crt.servlet.TodayAllDrugServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>TodayAllDrugServlet</servlet-name>
+    <url-pattern>/TodayAllDrug</url-pattern>
+  </servlet-mapping>
+  
+   <servlet>
+    <servlet-name>DrugByPnoAndDateServlet</servlet-name>
+    <servlet-class>crt.servlet.DrugByPnoAndDateServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DrugByPnoAndDateServlet</servlet-name>
+    <url-pattern>/DrugByPnoAndDate</url-pattern>
+  </servlet-mapping>
+  
+   <servlet>
+    <servlet-name>SendDrugServlet</servlet-name>
+    <servlet-class>crt.servlet.SendDrugServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>SendDrugServlet</servlet-name>
+    <url-pattern>/SendDrug</url-pattern>
+  </servlet-mapping>
+  
+   <servlet>
+    <servlet-name>SendDrugsServlet</servlet-name>
+    <servlet-class>crt.servlet.SendDrugsServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>SendDrugsServlet</servlet-name>
+    <url-pattern>/SendDrugs</url-pattern>
+  </servlet-mapping>
+  
+   <servlet>
+    <servlet-name>NoMoneyServlet</servlet-name>
+    <servlet-class>crt.servlet.NoMoneyServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>NoMoneyServlet</servlet-name>
+    <url-pattern>/NoMoney</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>MoneyMenuServlet</servlet-name>
+    <servlet-class>crt.servlet.MoneyMenuServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>MoneyMenuServlet</servlet-name>
+    <url-pattern>/MoneyMenu</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>SelectMoneyByPnoServlet</servlet-name>
+    <servlet-class>crt.servlet.SelectMoneyByPnoServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>SelectMoneyByPnoServlet</servlet-name>
+    <url-pattern>/SelectMoneyByPno</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>AddMoneyByPnoServlet</servlet-name>
+    <servlet-class>crt.servlet.AddMoneyByPnoServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AddMoneyByPnoServlet</servlet-name>
+    <url-pattern>/AddMoneyByPno</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>SelectDrugFeeMenuByPnoServlet</servlet-name>
+    <servlet-class>crt.servlet.SelectDrugFeeMenuByPnoServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>SelectDrugFeeMenuByPnoServlet</servlet-name>
+    <url-pattern>/SelectDrugFeeMenuByPno</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>DoctorAddPatientDivServlet</servlet-name>
+    <servlet-class>crt.servlet.DoctorAddPatientDivServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DoctorAddPatientDivServlet</servlet-name>
+    <url-pattern>/DoctorAddPatientDiv</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>CheckOutForMoneyServlet</servlet-name>
+    <servlet-class>crt.servlet.CheckOutForMoneyServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>CheckOutForMoneyServlet</servlet-name>
+    <url-pattern>/CheckOutForMoney</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>SelectFeeAndDescServlet</servlet-name>
+    <servlet-class>crt.servlet.SelectFeeAndDescServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>SelectFeeAndDescServlet</servlet-name>
+    <url-pattern>/SelectFeeAndDesc</url-pattern>
+  </servlet-mapping>
+</web-app>

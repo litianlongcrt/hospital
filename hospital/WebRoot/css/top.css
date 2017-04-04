@@ -1,0 +1,11 @@
+*{
+	margin: 0;
+	padding: 0;
+}
+.top{
+	background:url("../img/2.jpg");
+	height: 40px;
+	text-align: center;
+	line-height: 40px;
+	font-weight: bolder;
+}
