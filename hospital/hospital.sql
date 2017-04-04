@@ -182,7 +182,7 @@ INSERT INTO `bed` VALUES ('25', '0');
 INSERT INTO `bed` VALUES ('26', '0');
 INSERT INTO `bed` VALUES ('27', '0');
 INSERT INTO `bed` VALUES ('28', '0');
-INSERT INTO `bed` VALUES ('29', '10');
+INSERT INTO `bed` VALUES ('29', '0');
 INSERT INTO `bed` VALUES ('30', '0');
 INSERT INTO `doctor` VALUES ('1', '20170001', '1');
 INSERT INTO `doctor` VALUES ('2', '20170002', '1');
