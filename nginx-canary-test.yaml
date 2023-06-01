@@ -1,0 +1,146 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name:  nginx-v1
+spec:
+  selector:
+    matchLabels:
+      app: nginx
+      version: v1
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app:  nginx
+        version: v1
+    spec:
+      containers:
+      - name:  nginx
+        image:  nginx:latest
+        imagePullPolicy: IfNotPresent
+        lifecycle:
+          postStart:
+            exec:
+              command: ["/bin/sh", "-c", "echo `hostname`---v1 > /usr/share/nginx/html/index.html"]
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: nginx-v1
+spec:
+  selector:
+    app: nginx
+    version: v1
+  type: ClusterIP
+  ports:
+  - name: nginx
+    protocol: TCP
+    port: 80
+    targetPort: 80
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: nginx
+  annotations:
+    kubernetes.io/ingress.class: nginx
+spec:
+  rules:
+  - host: foo.bar.com
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: nginx-v1
+            port:
+              number: 80
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name:  nginx-v2
+spec:
+  selector:
+    matchLabels:
+      app: nginx
+      version: v2
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app:  nginx
+        version: v2
+    spec:
+      containers:
+      - name:  nginx
+        image:  nginx:latest
+        imagePullPolicy: IfNotPresent
+        lifecycle:
+          postStart:
+            exec:
+              command: ["/bin/sh", "-c", "echo `hostname`---v2 > /usr/share/nginx/html/index.html"]
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: nginx-v2
+spec:
+  selector:
+    app: nginx
+    version: v2
+  type: ClusterIP
+  ports:
+  - name: nginx
+    protocol: TCP
+    port: 80
+    targetPort: 80
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: nginx-canary
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    nginx.ingress.kubernetes.io/canary: "true"
+    nginx.ingress.kubernetes.io/canary-by-header: "canary"
+    nginx.ingress.kubernetes.io/canary-by-header-value: "true"
+    nginx.ingress.kubernetes.io/canary-weight: "10"
+spec:
+  rules:
+  - host: foo.bar.com
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: nginx-v2
+            port:
+              number: 80
+
+# 不同灰度方式的优先级由高到低为： canary-by-header>canary-by-cookie>canary-weight
+# 解释：如果访问域名加了header,所有的流量都会打入到v2版本，如果访问域名不加header,将会按照权重比例分配
+# for i in `seq 10`; do curl 10.99.234.34 -HHOST:foo.bar.com;done
+# nginx-v1-8fd57dc76-mdsvf---v1
+# nginx-v1-8fd57dc76-mdsvf---v1
+# nginx-v1-8fd57dc76-mdsvf---v1
+# nginx-v1-8fd57dc76-mdsvf---v1
+# nginx-v1-8fd57dc76-mdsvf---v1
+# nginx-v1-8fd57dc76-mdsvf---v1
+# nginx-v1-8fd57dc76-mdsvf---v1
+# nginx-v2-798d8f9946-22dvf---v2
+# nginx-v1-8fd57dc76-mdsvf---v1
+# nginx-v1-8fd57dc76-mdsvf---v1
+# for i in `seq 10`; do curl 10.99.234.34 -HHOST:foo.bar.com -Hcanary:true;done
+# nginx-v2-798d8f9946-22dvf---v2
+# nginx-v2-798d8f9946-22dvf---v2
+# nginx-v2-798d8f9946-22dvf---v2
+# nginx-v2-798d8f9946-22dvf---v2
+# nginx-v2-798d8f9946-22dvf---v2
+# nginx-v2-798d8f9946-22dvf---v2
+# nginx-v2-798d8f9946-22dvf---v2
+# nginx-v2-798d8f9946-22dvf---v2
+# nginx-v2-798d8f9946-22dvf---v2
+# nginx-v2-798d8f9946-22dvf---v2
