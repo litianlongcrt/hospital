@@ -1,7 +1,94 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: client
+  labels:
+    app: client
+    version: v1
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: client
+  template:
+    metadata:
+      labels:
+        app: client
+    spec:
+      containers:
+      - name: client
+        image: nginx
+        imagePullPolicy: IfNotPresent
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: web
+  labels:
+    app: web
+spec:
+  ports:
+  - port: 80
+    name: http
+  selector:
+    app: web
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: web-v1
+  labels:
+    app: web
+    version: v1
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: web
+      version: v1
+  template:
+    metadata:
+      labels:
+        app: web
+        version: v1
+    spec:
+      containers:
+      - name: httpd
+        image: httpd
+        imagePullPolicy: IfNotPresent
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: web-v2
+  labels:
+    app: web
+    version: v2
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: web
+      version: v2
+  template:
+    metadata:
+      labels:
+        app: web
+        version: v2
+    spec:
+      containers:
+      - name: nginx
+        image: nginx
+        imagePullPolicy: IfNotPresent
+        lifecycle:
+          postStart:
+            exec:
+              command: ["/bin/sh", "-c", "echo nginx > /usr/share/nginx/html/index.html"]
+---
 apiVersion: networking.istio.io/v1alpha3
 kind: DestinationRule
 metadata:
-  name: my-service
+  name: web-dr
 spec:
   host: web
   subsets:
@@ -21,7 +108,7 @@ spec:
 apiVersion: networking.istio.io/v1alpha3
 kind: VirtualService
 metadata:
-  name: my-service
+  name: web-vs
 spec:
   hosts:
   - web
